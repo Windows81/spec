@@ -50,6 +50,7 @@ Type       | Example     | Description
 `floatNE`  | `float32`   | A IEEE 754 floating-point number with a size of `N` bits, and [endianness][Endianness] `E`.
 `rfloatNE` | `rfloat32`  | Same as `floatNE`, but with [rotated encoding][RotatedEncoding].
 `bool`     | `bool`      | A boolean value stored as a `uint8`, where 0 is false and 1 is true.
+`string    | `string`    | A [string][Strings] value with a prefix `N` value `uint32`, followed by a non-zero terminated `[N]uint8`.
 `[N]T`     | `[4]uint8`  | An array with a constant length of `N`, with elements of type `T`.
 `[]T`      | `[]uint8`   | An array with elements of type `T`, the length of which is determined dynamically.
 `?T`       | `?uint8`    | A value of type `T`, which may or may not be present based on some condition. If not present, the value is omitted entirely.
@@ -124,8 +125,8 @@ the following structure:
 
 Field  | Type      | Description
 -------|-----------|------------
-Length | `uint32`  | The length of the string.
-Bytes  | `[]uint8` | The content of the string. The length is determined by the Length field.
+Length | `uint32`  | The length of the following Bytes field.
+Bytes  | `[]uint8` | The content of the string. Strings are non-zero terminated.
 
 ## References
 [References]: #references
